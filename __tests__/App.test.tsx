@@ -1,13 +1,9 @@
-/**
- * @format
- */
-
 import React from 'react';
 import ReactTestRenderer from 'react-test-renderer';
-import App from '../App';
+import AppEntry from '@/app/AppEntry';
 
-test('renders correctly', async () => {
+test('render: AppEntry correctly', async () => {
   await ReactTestRenderer.act(() => {
-    ReactTestRenderer.create(<App />);
+    ReactTestRenderer.create(<AppEntry />);
   });
 });
