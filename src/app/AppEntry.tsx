@@ -1,18 +1,18 @@
-import SafeScreen from '@/components/SafeScreen';
 import { StyleSheet, Text, useColorScheme, StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Navigation from '@/navigation/root';
 
 const AppContent = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
+  const onReady = () => {
+    console.log('Navigation is ready');
+  };
+
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <SafeScreen style={styles.container}>
-        <Text style={styles.title}>
-          Welcome to My Portfolio Mobile App!
-        </Text>
-      </SafeScreen>
+      <Navigation onReady={onReady} />
     </SafeAreaProvider>
   );
 };
