@@ -8,7 +8,7 @@ export type TColors = {
   shadow: string;
 };
 
-const Themes = ['dark', 'light'] as const;
+export const Themes = ['dark', 'light'] as const;
 
 export type TTheme = {
   [K in (typeof Themes)[number]]: {
@@ -31,7 +31,7 @@ const THEME: TTheme = {
       primary: '#0A84FF',
       secondary: '#5E5E5E',
       card: '#1C1C1E',
-      border: '#1a1a1a',
+      border: '#2b2b2b',
       shadow: '#FFFFFF',
     },
     isDark: true,

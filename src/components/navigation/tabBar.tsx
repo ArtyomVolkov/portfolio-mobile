@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { AppWindow, Blocks, House, Settings } from 'lucide-react-native/icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -57,14 +64,14 @@ const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
         onPress={() => navigateToRoute(option.key)}
         style={[
           styles.tabItem,
-          {
-            backgroundColor: isFocused ? theme.colors.card : 'transparent',
+          isFocused && {
+            backgroundColor: theme.colors.card,
+            flexGrow: Options.length,
           },
           {
-            flexGrow: isFocused ? Options.length : 0,
             transitionProperty: 'flexGrow',
             transitionDuration: 300,
-          },
+          } as StyleProp<ViewStyle>,
         ]}
       >
         <option.icon
