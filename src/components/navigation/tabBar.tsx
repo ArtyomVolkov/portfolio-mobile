@@ -4,6 +4,7 @@ import { AppWindow, Blocks, House, Settings } from 'lucide-react-native/icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Animated from 'react-native-reanimated';
+import { useTheme } from '@/contexts/theme';
 
 const TouchableOpacityAnimated =
   Animated.createAnimatedComponent(TouchableOpacity);
@@ -33,6 +34,8 @@ const Options = [
 
 const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
   const { bottom } = useSafeAreaInsets();
+  const { theme } = useTheme();
+
   const navigateToRoute = (routeName: string) => {
     const route = state.routes.find(r => r.name === routeName);
 
@@ -54,7 +57,9 @@ const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
         onPress={() => navigateToRoute(option.key)}
         style={[
           styles.tabItem,
-          isFocused && styles.focusedTabItem,
+          {
+            backgroundColor: isFocused ? theme.colors.card : 'transparent',
+          },
           {
             flexGrow: isFocused ? Options.length : 0,
             transitionProperty: 'flexGrow',
@@ -65,11 +70,11 @@ const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
         <option.icon
           strokeWidth={2}
           size={24}
-          color={isFocused ? '#673ab7' : '#222'}
+          color={isFocused ? theme.colors.primary : theme.colors.secondary}
         />
-        <View style={{ alignItems: 'center' }}>
+        <View>
           {isFocused && (
-            <Text style={[styles.tabLabel, styles.focusedTabLabel]}>
+            <Text style={[styles.tabLabel, { color: theme.colors.primary }]}>
               {option.title}
             </Text>
           )}
@@ -79,7 +84,18 @@ const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
   };
 
   return (
-    <View style={[styles.tabBar, { bottom }]}>{Options.map(renderTab)}</View>
+    <View
+      style={[
+        styles.tabBar,
+        {
+          bottom,
+          backgroundColor: theme.colors.background,
+          borderColor: theme.colors.border,
+        },
+      ]}
+    >
+      {Options.map(renderTab)}
+    </View>
   );
 };
 
@@ -96,29 +112,19 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderLeftWidth: 1,
     borderRightWidth: 1,
-    backgroundColor: '#ededed',
-    borderColor: '#d6d6d6',
     flexDirection: 'row',
     gap: 8,
   },
   tabItem: {
     flexDirection: 'row',
-    backgroundColor: '#e5e5e5',
     borderRadius: 25,
     padding: 12,
     alignItems: 'center',
   },
-  focusedTabItem: {
-    backgroundColor: '#e7d9ff',
-  },
   tabLabel: {
-    color: '#222',
     fontSize: 18,
     fontWeight: '500',
     paddingLeft: 8,
-  },
-  focusedTabLabel: {
-    color: '#673ab7',
   },
 });
 

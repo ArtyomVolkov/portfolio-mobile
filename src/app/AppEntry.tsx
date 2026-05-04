@@ -1,31 +1,12 @@
-import { StyleSheet, Text, useColorScheme, StatusBar } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Navigation from '@/navigation/root';
+import AppProviders from '@/app/AppProviders';
+import AppLayout from '@/app/AppLayout';
 
-const AppContent = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const onReady = () => {
-    console.log('Navigation is ready');
-  };
-
+const AppEntry = () => {
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Navigation onReady={onReady} />
-    </SafeAreaProvider>
+    <AppProviders>
+      <AppLayout />
+    </AppProviders>
   );
 };
 
-export default AppContent;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-});
+export default AppEntry;

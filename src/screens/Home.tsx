@@ -1,5 +1,7 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet, Text, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
+
+import Typography from '@/components/ui/Typography';
 
 const MainScreen = () => {
   return (
@@ -8,7 +10,7 @@ const MainScreen = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.container}
       >
-        <Text style={styles.title}>Home Screen</Text>
+        <Typography size="xl">Home Screen</Typography>
       </ScrollView>
     </SafeAreaView>
   );
@@ -20,10 +22,6 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
   },
 });
 

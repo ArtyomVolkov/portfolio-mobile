@@ -1,5 +1,7 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
+
+import Typography from '@/components/ui/Typography';
 
 const UiKitScreen = () => {
   return (
@@ -8,7 +10,7 @@ const UiKitScreen = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.container}
       >
-        <Text style={styles.title}>UI Kit Screen</Text>
+        <Typography size="xl">UI Kit Screen</Typography>
       </ScrollView>
     </SafeAreaView>
   );
@@ -20,10 +22,6 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
   },
 });
 

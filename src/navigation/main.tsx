@@ -4,7 +4,7 @@ import HomeScreen from '@/screens/Home';
 import UiKitScreen from '@/screens/UiKit';
 import SettingsScreen from '@/screens/Settings';
 import AppsScreen from '@/screens/Apps';
-import TabBar from '@/components/navigation/tabBar';
+import TabBar from '@/components/navigation/TabBar';
 
 const MainTabNavigator = createBottomTabNavigator({
   screenOptions: {

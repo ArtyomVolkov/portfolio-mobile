@@ -1,5 +1,7 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import Typography from '@/components/ui/Typography';
 
 const SettingsScreen = () => {
   return (
@@ -8,7 +10,7 @@ const SettingsScreen = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.container}
       >
-        <Text style={styles.title}>Settings Screen</Text>
+        <Typography size="xl">Settings Screen</Typography>
       </ScrollView>
     </SafeAreaView>
   );
@@ -20,10 +22,6 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
   },
 });
 
