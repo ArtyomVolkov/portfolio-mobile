@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, StatusBar } from 'react-native';
 import { DefaultTheme } from '@react-navigation/native';
-import BootSplash from "react-native-bootsplash";
+import BootSplash from 'react-native-bootsplash';
 
 import Navigation from '@/navigation/root';
 import Main from '@/components/layout/Main';
@@ -12,7 +12,7 @@ import { delay } from '@/utils/promise';
 
 const AppLayout = () => {
   const { theme } = useTheme();
-  const [loading, setLoading] = useState(true);
+  const [showSplash, setShowSplash] = useState(true);
   const splashScreenRef = useRef<SplashScreenRef>(null);
 
   useEffect(() => {
@@ -30,26 +30,23 @@ const AppLayout = () => {
   }, [theme]);
 
   const onInit = async () => {
-    // load resources, fonts, etc.
-    BootSplash.hide({ fade: true });
+    await BootSplash.hide({ fade: true });
   };
 
   const onNavigationReady = async () => {
     await delay(1000); // min animation time
-    splashScreenRef.current?.fadeOut();
+    splashScreenRef.current?.fadeOut(onFadeOut);
   };
 
   const onFadeOut = () => {
-    setLoading(false);
+    setShowSplash(false);
   };
 
   return (
     <Main style={styles.container}>
       <StatusBar barStyle={theme.isDark ? 'light-content' : 'dark-content'} />
       <Navigation onReady={onNavigationReady} theme={navigationTheme} />
-      {loading && (
-        <SplashScreen onFadeOut={onFadeOut} apiRef={splashScreenRef} />
-      )}
+      {showSplash && <SplashScreen apiRef={splashScreenRef} />}
     </Main>
   );
 };

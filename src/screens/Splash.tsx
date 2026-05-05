@@ -14,25 +14,27 @@ import AppLoaderLottie from '@/assets/lottie/app-loader.json';
 import { useTheme } from '@/contexts/theme';
 
 type SplashScreenProps = {
-  onFadeOut: () => void;
   apiRef?: React.Ref<SplashScreenRef>;
 };
 
 export type SplashScreenRef = {
-  fadeOut: () => void;
+  fadeOut: (callback?: () => void) => void;
 };
 
-const SplashScreen: FC<SplashScreenProps> = ({ onFadeOut, apiRef }) => {
+const SplashScreen: FC<SplashScreenProps> = ({ apiRef }) => {
   const { theme } = useTheme();
   const opacityAnimation = useSharedValue(1);
 
-  const fadeOut = () => {
+  const fadeOut = (callback?: () => void) => {
     opacityAnimation.value = withTiming(
       0,
       { duration: 1000, easing: Easing.linear },
       isFinished => {
         if (isFinished) {
-          runOnJS(onFadeOut)();
+          // runOnJS(onFadeOut)();
+          if (callback) {
+            runOnJS(callback)();
+          }
         }
       },
     );
