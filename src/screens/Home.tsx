@@ -1,28 +1,14 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import Typography from '@/components/ui/Typography';
+import SafeAreaView from '@/components/layout/SafeAreaView';
 
 const MainScreen = () => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.container}
-      >
-        <Typography size="xl">Home Screen</Typography>
-      </ScrollView>
+    <SafeAreaView scrollable>
+      <Typography size="xl">Home Screen</Typography>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  container: {
-    padding: 16,
-  },
-});
 
 export default MainScreen;
