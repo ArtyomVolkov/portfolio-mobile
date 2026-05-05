@@ -44,7 +44,7 @@ const THEME: TTheme = {
       text: '#000000',
       primary: '#007AFF',
       secondary: '#8E8E93',
-      card: '#F9F9F9',
+      card: '#f4f4f4',
       border: '#C7C7CC',
       shadow: '#000000',
     },
