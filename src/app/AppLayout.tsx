@@ -7,7 +7,7 @@ import Navigation from '@/navigation/root';
 import Main from '@/components/layout/Main';
 
 import { useTheme } from '@/contexts/theme';
-import SplashScreen, { type SplashScreenRef } from '@/screens/Splash';
+import SplashScreen, { type SplashScreenRef } from '@/screens/root/Splash';
 import { delay } from '@/utils/promise';
 
 const AppLayout = () => {

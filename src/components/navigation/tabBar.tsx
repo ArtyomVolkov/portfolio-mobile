@@ -77,7 +77,7 @@ const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
         <option.icon
           strokeWidth={2}
           size={24}
-          color={isFocused ? theme.colors.primary : theme.colors.secondary}
+          color={isFocused ? theme.colors.primary : theme.colors.shadow}
         />
         <View>
           {isFocused && (

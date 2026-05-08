@@ -26,8 +26,8 @@ const Typography: FC<TypographyProps> = ({ children, size = 'md', style }) => {
     <Text
       style={[
         styles.text,
-        style,
         { color: theme.colors.text, fontSize: fontSizes[size] },
+        style,
       ]}
     >
       {children}

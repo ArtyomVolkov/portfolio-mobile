@@ -8,6 +8,13 @@ export type TColors = {
   shadow: string;
 };
 
+export type TPadding = {
+  tiny: number;
+  small: number;
+  medium: number;
+  large: number;
+};
+
 export const Themes = ['dark', 'light'] as const;
 
 export type TTheme = {
@@ -15,6 +22,7 @@ export type TTheme = {
     name: string;
     fontFamily: string;
     colors: TColors;
+    padding: TPadding;
     isDark?: boolean;
   };
 };
@@ -29,10 +37,16 @@ const THEME: TTheme = {
       background: '#000000',
       text: '#FFFFFF',
       primary: '#0A84FF',
-      secondary: '#5E5E5E',
+      secondary: '#ff9800',
       card: '#1C1C1E',
       border: '#2b2b2b',
-      shadow: '#FFFFFF',
+      shadow: '#959595',
+    },
+    padding: {
+      tiny: 4,
+      small: 8,
+      medium: 16,
+      large: 24,
     },
     isDark: true,
   },
@@ -43,10 +57,16 @@ const THEME: TTheme = {
       background: '#FFFFFF',
       text: '#000000',
       primary: '#007AFF',
-      secondary: '#8E8E93',
+      secondary: '#ff9800',
       card: '#f4f4f4',
       border: '#C7C7CC',
       shadow: '#000000',
+    },
+    padding: {
+      tiny: 4,
+      small: 8,
+      medium: 16,
+      large: 24,
     },
     isDark: false,
   },
