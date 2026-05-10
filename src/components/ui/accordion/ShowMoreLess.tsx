@@ -1,8 +1,10 @@
 import { FC, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
-import Typography from '../Typography';
+import Typography from '@/components/ui/Typography';
 import AccordionView from './AccordionView';
+
+import { TViewStyle } from '@/core/types/ui';
 
 type ShowMoreProps = {
   initialRenderCount: number;
@@ -11,9 +13,9 @@ type ShowMoreProps = {
   showLessLabel?: string;
   children?: React.ReactNode | React.ReactNode[];
   style?: {
-    container?: any;
-    children?: any;
-    toggle?: any;
+    container?: TViewStyle;
+    children?: TViewStyle;
+    toggle?: TViewStyle;
   };
 };
 

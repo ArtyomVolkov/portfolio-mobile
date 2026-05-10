@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   flashList: {
     padding: 12,
-    paddingBottom: 72,
+    paddingBottom: 74,
   },
   card: {
     gap: 16,

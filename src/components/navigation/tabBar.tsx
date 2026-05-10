@@ -1,16 +1,21 @@
 import {
   View,
-  Text,
   StyleSheet,
   TouchableOpacity,
   StyleProp,
   ViewStyle,
 } from 'react-native';
+import { BlurView } from '@react-native-community/blur';
+import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
+
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { AppWindow, Blocks, House, Settings } from 'lucide-react-native/icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Animated from 'react-native-reanimated';
+
+import Typography from '@/components/ui/Typography';
+
 import { useTheme } from '@/contexts/theme';
 
 const TouchableOpacityAnimated =
@@ -39,9 +44,13 @@ const Options = [
   },
 ];
 
+const BLUR_AMOUNT = 8;
+const TOP_BLUR_OFFSET = '50%';
+
 const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
   const { bottom } = useSafeAreaInsets();
   const { theme } = useTheme();
+  const gradientColor = theme.colors.background;
 
   const navigateToRoute = (routeName: string) => {
     const route = state.routes.find(r => r.name === routeName);
@@ -81,9 +90,11 @@ const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
         />
         <View>
           {isFocused && (
-            <Text style={[styles.tabLabel, { color: theme.colors.primary }]}>
+            <Typography
+              style={[styles.tabLabel, { color: theme.colors.primary }]}
+            >
               {option.title}
-            </Text>
+            </Typography>
           )}
         </View>
       </TouchableOpacityAnimated>
@@ -91,29 +102,74 @@ const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
   };
 
   return (
-    <View
-      style={[
-        styles.tabBar,
-        {
-          bottom,
-          backgroundColor: theme.colors.background,
-          borderColor: theme.colors.border,
-        },
-      ]}
-    >
-      {Options.map(renderTab)}
+    <View style={[styles.container, { bottom }]} pointerEvents="box-none">
+      <View
+        style={[
+          styles.tabBar,
+          {
+            backgroundColor: theme.colors.background,
+            borderColor: theme.colors.border,
+          },
+        ]}
+      >
+        {Options.map(renderTab)}
+      </View>
+      <View style={styles.overlay} pointerEvents="none">
+        <BlurView
+          style={[styles.blurView, { top: TOP_BLUR_OFFSET }]}
+          blurAmount={BLUR_AMOUNT}
+          blurType="dark"
+        />
+        <Svg style={styles.svg}>
+          <Defs>
+            <LinearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+              <Stop offset="15%" stopColor={gradientColor} stopOpacity={0.7} />
+              <Stop offset="50%" stopColor={gradientColor} stopOpacity={0.3} />
+              <Stop offset="70%" stopColor={gradientColor} stopOpacity={0} />
+            </LinearGradient>
+          </Defs>
+          <Rect
+            x="0"
+            y={TOP_BLUR_OFFSET}
+            width="100%"
+            height="100%"
+            fill="url(#gradient)"
+          />
+        </Svg>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  tabBar: {
+  container: {
     position: 'absolute',
-    margin: 12,
-    borderRadius: 30,
-    alignItems: 'center',
     left: 0,
     right: 0,
+    padding: 12,
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 0,
+  },
+  svg: {
+    width: '100%',
+    height: '100%',
+  },
+  blurView: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  tabBar: {
+    borderRadius: 30,
+    alignItems: 'center',
+    zIndex: 1,
     padding: 6,
     borderTopWidth: 1,
     borderBottomWidth: 1,
