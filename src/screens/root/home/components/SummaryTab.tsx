@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 
 import Card from '@/components/ui/Card';
@@ -50,23 +50,17 @@ const Sections: Section[] = [
     key: 'social',
     component: SocialAndContactsSection,
   },
-  {
-    key: 'footer',
-  },
 ];
 
 const SummaryTab = () => {
-  const renderItem = ({ item }: { item: Section }) => {
-    if (item.key === 'footer') {
-      return <View style={{ height: 80 }} />; // footer navigation height
-    }
+  const renderItem = (item: Section) => {
     if (!item.component) {
       return null;
     }
     const Component = item.component;
 
     return (
-      <Card style={styles.card}>
+      <Card style={styles.card} key={item.key}>
         <Component />
       </Card>
     );
@@ -75,16 +69,21 @@ const SummaryTab = () => {
   return (
     <FlashList
       data={Sections}
-      style={[styles.flashList]}
-      renderItem={renderItem}
+      renderItem={({ item }) => renderItem(item)}
       keyExtractor={item => item.key}
+      contentContainerStyle={styles.flashList}
     />
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 12,
+    paddingBottom: 72,
+  },
   flashList: {
-    paddingTop: 12,
+    padding: 12,
+    paddingBottom: 72,
   },
   card: {
     gap: 16,

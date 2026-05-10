@@ -48,7 +48,7 @@ const SocialAndContactsSection = () => {
     try {
       await Linking.openURL(url);
     } catch (error) {
-      Alert.alert('Failed to open URL');
+      Alert.alert('Failed to open URL: ' + (error as Error).message);
     }
   };
 
