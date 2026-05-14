@@ -115,11 +115,6 @@ const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
         {Options.map(renderTab)}
       </View>
       <View style={styles.overlay} pointerEvents="none">
-        <BlurView
-          style={[styles.blurView, { top: TOP_BLUR_OFFSET }]}
-          blurAmount={BLUR_AMOUNT}
-          blurType="dark"
-        />
         <Svg style={styles.svg}>
           <Defs>
             <LinearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
@@ -136,6 +131,11 @@ const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
             fill="url(#gradient)"
           />
         </Svg>
+        <BlurView
+          style={[styles.blurView, { top: TOP_BLUR_OFFSET }]}
+          blurAmount={BLUR_AMOUNT}
+          blurType="dark"
+        />
       </View>
     </View>
   );
@@ -147,14 +147,17 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: 12,
+    zIndex: 0,
   },
   overlay: {
     position: 'absolute',
-    top: 0,
+    flex: 1,
+    top: '49%',
     left: 0,
     right: 0,
     bottom: 0,
     zIndex: 0,
+    overflow: 'hidden',
   },
   svg: {
     width: '100%',
@@ -162,14 +165,14 @@ const styles = StyleSheet.create({
   },
   blurView: {
     position: 'absolute',
+    height: '100%',
     left: 0,
     right: 0,
-    bottom: 0,
   },
   tabBar: {
     borderRadius: 30,
     alignItems: 'center',
-    zIndex: 1,
+    zIndex: 10,
     padding: 6,
     borderTopWidth: 1,
     borderBottomWidth: 1,

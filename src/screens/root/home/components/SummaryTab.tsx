@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     paddingBottom: 72,
   },
   flashList: {
+    zIndex: 10,
     padding: 12,
     paddingBottom: 74,
   },
