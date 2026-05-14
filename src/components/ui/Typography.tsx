@@ -15,18 +15,29 @@ const fontSizes: Record<TSize, number> = {
   xxl: 32,
 };
 
+type TColor = keyof ReturnType<typeof useTheme>['theme']['colors'];
+
 type TypographyProps = TextProps & {
   size?: TSize;
+  color?: TColor;
 };
 
-const Typography: FC<TypographyProps> = ({ children, size = 'md', style }) => {
+const Typography: FC<TypographyProps> = ({
+  children,
+  size = 'md',
+  color = 'text',
+  style,
+}) => {
   const { theme } = useTheme();
 
   return (
     <Text
       style={[
         styles.text,
-        { color: theme.colors.text, fontSize: fontSizes[size] },
+        {
+          color: theme.colors[color],
+          fontSize: fontSizes[size],
+        },
         style,
       ]}
     >

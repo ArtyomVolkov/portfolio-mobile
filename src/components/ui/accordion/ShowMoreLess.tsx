@@ -47,14 +47,16 @@ const ShowMoreLess: FC<ShowMoreProps> = ({
       <AccordionView style={style?.children}>
         {renderChildrenContent()}
       </AccordionView>
-      <TouchableOpacity
-        style={[styles.toggle, style?.toggle]}
-        onPress={handleToggle}
-      >
-        <Typography size="md">
-          {open ? showLessLabel : showMoreLabel}
-        </Typography>
-      </TouchableOpacity>
+      {Array.isArray(children) && children.length > initialRenderCount && (
+        <TouchableOpacity
+          style={[styles.toggle, style?.toggle]}
+          onPress={handleToggle}
+        >
+          <Typography size="md">
+            {open ? showLessLabel : showMoreLabel}
+          </Typography>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

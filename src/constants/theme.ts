@@ -40,7 +40,7 @@ const THEME: TTheme = {
       secondary: '#ff9800',
       card: '#1C1C1E',
       border: '#2b2b2b',
-      shadow: '#959595',
+      shadow: '#5E5E5E',
     },
     padding: {
       tiny: 4,
@@ -60,7 +60,7 @@ const THEME: TTheme = {
       secondary: '#ff9800',
       card: '#f4f4f4',
       border: '#C7C7CC',
-      shadow: '#000000',
+      shadow: '#5E5E5E',
     },
     padding: {
       tiny: 4,

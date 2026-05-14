@@ -7,13 +7,13 @@ import Caption from './Caption';
 const EducationSection = () => {
   return (
     <Caption icon={GraduationCap} title="Education">
-      <Typography size="md" style={styles.article}>
+      <Typography style={styles.article} color="shadow">
         M.Sc. in Mechanical Engineering
       </Typography>
-      <Typography size="md" style={styles.article}>
+      <Typography style={styles.article} color="shadow">
         Donetsk National Technical University, Ukraine
       </Typography>
-      <Typography size="md" style={styles.article}>
+      <Typography style={styles.article} color="shadow">
         Graduated in 2011
       </Typography>
     </Caption>
@@ -23,7 +23,6 @@ const EducationSection = () => {
 const styles = StyleSheet.create({
   article: {
     fontSize: 18,
-    color: '#5E5E5E',
   },
 });
 

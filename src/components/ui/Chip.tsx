@@ -37,6 +37,7 @@ const Chip: FC<ChipProps> = ({ icon, label, color, style }) => {
       style={[
         styles.container,
         color && { backgroundColor: color },
+        { borderColor: theme.colors.border },
         style?.container,
       ]}
     >
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
     gap: 6,
     flexDirection: 'row',
     alignItems: 'center',
+    borderWidth: 1,
   },
   icon: {
     width: 24,

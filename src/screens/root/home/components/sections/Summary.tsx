@@ -12,28 +12,28 @@ const SummarySection = () => {
         initialRenderCount={1}
         style={{ children: styles.articles }}
       >
-        <Typography style={styles.description}>
+        <Typography style={styles.description} color="shadow">
           Software Engineer (13+ years) with vast development experience of web
           applications using libs/frameworks such as: Node, Nest, Next, React,
           ReactNative, Capacitor, Flutter, Angular, AngularJS, BackboneJS.
         </Typography>
-        <Typography style={styles.description}>
+        <Typography style={styles.description} color="shadow">
           I have experience in the backend, particularly in delivering REST API
           services and working with databases such as MongoDB and PostgreSQL.
           Good experience with OOP, FP, and GoF's design patterns.
         </Typography>
-        <Typography style={styles.description}>
+        <Typography style={styles.description} color="shadow">
           Experience with Micro FrontEnd infrastructure. Knowledgeable about TDD
           and BDD development methods, performance diagnostics for JavaScript
           code, and handling complicated issues in UI development. Knowledgeable
           about the process of code review, code quality, estimations, and work
           planning.
         </Typography>
-        <Typography style={styles.description}>
+        <Typography style={styles.description} color="shadow">
           I have experience in leading teams of 2-5 people, mentoring junior
           developers, and conducting technical interviews.
         </Typography>
-        <Typography style={styles.description}>
+        <Typography style={styles.description} color="shadow">
           Experience with the enhancements made to Core Web Vitals metrics, such
           as LCP, FID, and CLS, and optimizing web applications to improve these
           metrics.
@@ -53,6 +53,5 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 18,
-    color: '#5E5E5E',
   },
 });

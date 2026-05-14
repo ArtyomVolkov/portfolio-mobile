@@ -1,9 +1,9 @@
+import { StyleSheet } from 'react-native';
 import { BookA, FolderKanban } from 'lucide-react-native/icons';
 
-import Typography from '@/components/ui/Typography';
 import Tabs from '@/components/ui/Tabs';
 import SummaryTab from './SummaryTab';
-import { StyleSheet } from 'react-native';
+import ProjectsTab from './ProjectsTab';
 
 const ProfileTabs = () => {
   return (
@@ -21,7 +21,7 @@ const ProfileTabs = () => {
           key: 'projects',
           title: 'Projects',
           icon: FolderKanban,
-          component: <Typography>Projects</Typography>,
+          component: <ProjectsTab />,
         },
       ]}
     />
