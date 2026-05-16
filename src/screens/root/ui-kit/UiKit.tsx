@@ -1,10 +1,22 @@
-import Typography from '@/components/ui/Typography';
 import SafeAreaView from '@/components/layout/SafeAreaView';
+import HorizontalTabs from '@/components/ui/HorizontalTabs';
+
+import { Paintbrush } from 'lucide-react-native/icons';
+import ThemesTab from './components/Themes';
 
 const UiKitScreen = () => {
   return (
-    <SafeAreaView scrollable>
-      <Typography size="xl">UI Kit Screen</Typography>
+    <SafeAreaView>
+      <HorizontalTabs
+        items={[
+          {
+            key: 'themes',
+            title: 'Themes',
+            icon: Paintbrush,
+            component: <ThemesTab />,
+          },
+        ]}
+      />
     </SafeAreaView>
   );
 };

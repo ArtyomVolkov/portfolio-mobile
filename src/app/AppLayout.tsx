@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, StatusBar } from 'react-native';
 import { DefaultTheme } from '@react-navigation/native';
 import BootSplash from 'react-native-bootsplash';
@@ -9,15 +9,32 @@ import Main from '@/components/layout/Main';
 import { useTheme } from '@/contexts/theme';
 import SplashScreen, { type SplashScreenRef } from '@/screens/root/Splash';
 import { delay } from '@/utils/promise';
+import AsyncStorage from '@/services/AsyncStorage';
+import THEME from '@/constants/theme';
 
 const AppLayout = () => {
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [showSplash, setShowSplash] = useState(true);
   const splashScreenRef = useRef<SplashScreenRef>(null);
 
+  const onInit = useCallback(async () => {
+    try {
+      const storedThemeName = await AsyncStorage.getItem('selectedTheme');
+      const themeName = THEME[storedThemeName as keyof typeof THEME];
+
+      if (storedThemeName && themeName) {
+        setTheme(storedThemeName as keyof typeof THEME);
+      }
+    } catch (error) {
+      console.error('Failed to load theme from storage:', error);
+    } finally {
+      BootSplash.hide({ fade: true });
+    }
+  }, [setTheme]);
+
   useEffect(() => {
     onInit();
-  }, []);
+  }, [onInit]);
 
   const navigationTheme = useMemo(() => {
     return {
@@ -28,10 +45,6 @@ const AppLayout = () => {
       },
     };
   }, [theme]);
-
-  const onInit = async () => {
-    await BootSplash.hide({ fade: true });
-  };
 
   const onNavigationReady = async () => {
     await delay(1000); // min animation time

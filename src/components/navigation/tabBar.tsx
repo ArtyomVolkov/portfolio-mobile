@@ -45,7 +45,7 @@ const Options = [
 ];
 
 const BLUR_AMOUNT = 8;
-const TOP_BLUR_OFFSET = '50%';
+const TOP_BLUR_OFFSET = '39%';
 
 const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
   const { bottom } = useSafeAreaInsets();
@@ -134,7 +134,7 @@ const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
         <BlurView
           style={[styles.blurView, { top: TOP_BLUR_OFFSET }]}
           blurAmount={BLUR_AMOUNT}
-          blurType="dark"
+          blurType={theme.isDark ? 'dark' : 'light'}
         />
       </View>
     </View>
