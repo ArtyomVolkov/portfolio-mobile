@@ -8,18 +8,21 @@ import Animated, {
 } from 'react-native-reanimated';
 
 type AccordionViewProps = {
+  initialAnimation?: boolean;
   children?: React.ReactNode | React.ReactNode[];
   style?: TViewStyle;
 };
 
 const AccordionView: FC<AccordionViewProps> = ({ children, style }) => {
   const heightValue = useSharedValue(0);
+  const hasMeasured = useSharedValue(false);
 
   const onLayout = (event: LayoutChangeEvent) => {
     const { height } = event.nativeEvent.layout;
 
     if (height >= 0) {
-      heightValue.value = withSpring(height);
+      heightValue.value = hasMeasured.value ? withSpring(height) : height;
+      hasMeasured.value = true;
     }
   };
 

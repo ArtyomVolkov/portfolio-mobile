@@ -10,7 +10,7 @@ const SummarySection = () => {
     <Caption icon={NotepadText} title="Summary">
       <ShowMoreLess
         initialRenderCount={1}
-        style={{ children: styles.articles }}
+        style={{ children: styles.articles, toggle: styles.showMoreLessToggle }}
       >
         <Typography style={styles.description} color="shadow">
           Software Engineer (13+ years) with vast development experience of web
@@ -53,5 +53,8 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 18,
+  },
+  showMoreLessToggle: {
+    alignItems: 'flex-end',
   },
 });

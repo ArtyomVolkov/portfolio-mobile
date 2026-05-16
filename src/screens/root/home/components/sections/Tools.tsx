@@ -16,7 +16,10 @@ const ToolsSection = () => {
     <Caption icon={Toolbox} title="Tools">
       <ShowMoreLess
         initialRenderCount={8}
-        style={{ children: styles.toolsGrid }}
+        style={{
+          children: styles.toolsGrid,
+          toggle: styles.showMoreLessToggle,
+        }}
       >
         {TOOLS.map(tool => (
           <Chip
@@ -54,6 +57,9 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
+  },
+  showMoreLessToggle: {
+    alignItems: 'flex-end',
   },
 });
 

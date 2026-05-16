@@ -16,7 +16,10 @@ const Technologies = () => {
     <Caption icon={Microchip} title="Technologies">
       <ShowMoreLess
         initialRenderCount={6}
-        style={{ children: styles.technologyGrid }}
+        style={{
+          children: styles.technologyGrid,
+          toggle: styles.showMoreLessToggle,
+        }}
       >
         {TECHNOLOGIES.map(tech => (
           <Chip
@@ -54,6 +57,9 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
+  },
+  showMoreLessToggle: {
+    alignItems: 'flex-end',
   },
 });
 
