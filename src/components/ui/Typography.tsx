@@ -27,6 +27,7 @@ const Typography: FC<TypographyProps> = ({
   size = 'md',
   color = 'text',
   style,
+  ...rest
 }) => {
   const { theme } = useTheme();
 
@@ -40,6 +41,7 @@ const Typography: FC<TypographyProps> = ({
         },
         style,
       ]}
+      {...rest}
     >
       {children}
     </Text>
@@ -49,5 +51,7 @@ const Typography: FC<TypographyProps> = ({
 export default Typography;
 
 const styles = StyleSheet.create({
-  text: {},
+  text: {
+    maxWidth: '100%',
+  },
 });
