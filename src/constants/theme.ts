@@ -30,7 +30,7 @@ export type TTheme = {
 export const DarkThemeColors = {
   background: '#000000',
   text: '#FFFFFF',
-  primary: '#0A84FF',
+  primary: '#0a58ff',
   secondary: '#ff9800',
   card: '#1C1C1E',
   border: '#2b2b2b',
@@ -40,8 +40,8 @@ export const DarkThemeColors = {
 export const LightThemeColors = {
   background: '#FFFFFF',
   text: '#000000',
-  primary: '#007AFF',
-  secondary: '#ff9800',
+  primary: '#072bfa',
+  secondary: '#eb0d58',
   card: '#f4f4f4',
   border: '#C7C7CC',
   shadow: '#5E5E5E',

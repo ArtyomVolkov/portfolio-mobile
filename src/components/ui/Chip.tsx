@@ -23,7 +23,7 @@ const Chip: FC<ChipProps> = ({ icon, label, color, style }) => {
     if (typeof icon === 'string') {
       return (
         <View style={[styles.icon, style?.icon]}>
-          <Typography style={{ color: theme.colors.text, fontSize: 14 }}>
+          <Typography style={styles.iconText}>
             {icon}
           </Typography>
         </View>
@@ -64,6 +64,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'black',
+  },
+  iconText: {
+    fontSize: 14,
+    color: 'white',
   },
   label: {
     color: 'black',

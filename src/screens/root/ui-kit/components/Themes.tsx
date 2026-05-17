@@ -30,7 +30,7 @@ const ThemesTab = () => {
           name="Dark Theme"
           outlineColor="#414141"
           backgroundColor="#000000"
-          textColor="#0A84FF"
+          textColor="#0a58ff"
           colors={[
             { name: 'Background', hex: DarkThemeColors.background },
             { name: 'Card', hex: DarkThemeColors.card },
@@ -49,7 +49,7 @@ const ThemesTab = () => {
           onPress={() => setTheme('light')}
           name="Light Theme"
           outlineColor="#616161"
-          textColor="#0A84FF"
+          textColor="#072bfa"
           colors={[
             { name: 'Background', hex: LightThemeColors.background },
             { name: 'Card', hex: LightThemeColors.card },
