@@ -45,7 +45,7 @@ const Options = [
 ];
 
 const BLUR_AMOUNT = 8;
-const TOP_BLUR_OFFSET = '39%';
+const TOP_BLUR_OFFSET = '30%';
 
 const TabBar: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
   const { bottom } = useSafeAreaInsets();
@@ -193,5 +193,8 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
 });
+
+export const TAB_BAR_HEIGHT =
+  48 + styles.tabBar.padding * 2 + styles.container.padding * 2;
 
 export default TabBar;

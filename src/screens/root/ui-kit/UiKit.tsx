@@ -1,8 +1,10 @@
+import { Paintbrush, SeparatorHorizontal } from 'lucide-react-native/icons';
+
 import SafeAreaView from '@/components/layout/SafeAreaView';
 import HorizontalTabs from '@/components/ui/HorizontalTabs';
 
-import { Paintbrush } from 'lucide-react-native/icons';
 import ThemesTab from './components/Themes';
+import DividerTab from './components/Divider';
 
 const UiKitScreen = () => {
   return (
@@ -14,6 +16,12 @@ const UiKitScreen = () => {
             title: 'Themes',
             icon: Paintbrush,
             component: <ThemesTab />,
+          },
+          {
+            key: 'divider',
+            title: 'Divider',
+            icon: SeparatorHorizontal,
+            component: <DividerTab />,
           },
         ]}
       />

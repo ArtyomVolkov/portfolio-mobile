@@ -1,8 +1,10 @@
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Typography from '@/components/ui/Typography';
+import BottomTabView from '@/components/layout/BottomTabView';
 import Divider from '@/components/ui/Divider';
 import ThemeCard from '@/components/ui/ThemeCard';
+
 import { useTheme } from '@/contexts/theme';
 import { DarkThemeColors, LightThemeColors } from '@/constants/theme';
 
@@ -10,7 +12,7 @@ const ThemesTab = () => {
   const { theme, setTheme } = useTheme();
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <BottomTabView style={styles.container}>
       <Typography style={styles.title}>Themes</Typography>
       <Typography style={styles.subtitle} color="shadow">
         Theming in UI design refers to the process of creating a consistent
@@ -31,12 +33,12 @@ const ThemesTab = () => {
           textColor="#0A84FF"
           colors={[
             { name: 'Background', hex: DarkThemeColors.background },
-            { name: 'Text', hex: DarkThemeColors.text },
-            { name: 'Primary', hex: DarkThemeColors.primary },
-            { name: 'Secondary', hex: DarkThemeColors.secondary },
             { name: 'Card', hex: DarkThemeColors.card },
             { name: 'Border', hex: DarkThemeColors.border },
             { name: 'Shadow', hex: DarkThemeColors.shadow },
+            { name: 'Text', hex: DarkThemeColors.text },
+            { name: 'Primary', hex: DarkThemeColors.primary },
+            { name: 'Secondary', hex: DarkThemeColors.secondary },
           ]}
         />
       </View>
@@ -50,16 +52,16 @@ const ThemesTab = () => {
           textColor="#0A84FF"
           colors={[
             { name: 'Background', hex: LightThemeColors.background },
-            { name: 'Text', hex: LightThemeColors.text },
-            { name: 'Primary', hex: LightThemeColors.primary },
-            { name: 'Secondary', hex: LightThemeColors.secondary },
             { name: 'Card', hex: LightThemeColors.card },
             { name: 'Border', hex: LightThemeColors.border },
             { name: 'Shadow', hex: LightThemeColors.shadow },
+            { name: 'Text', hex: LightThemeColors.text },
+            { name: 'Primary', hex: LightThemeColors.primary },
+            { name: 'Secondary', hex: LightThemeColors.secondary },
           ]}
         />
       </View>
-    </ScrollView>
+    </BottomTabView>
   );
 };
 
@@ -67,7 +69,6 @@ export default ThemesTab;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 16,
     gap: 12,
   },
