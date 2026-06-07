@@ -6,6 +6,10 @@ export type TColors = {
   card: string;
   border: string;
   shadow: string;
+  danger: string;
+  warning: string;
+  info: string;
+  success: string;
 };
 
 export type TPadding = {
@@ -35,6 +39,10 @@ export const DarkThemeColors = {
   card: '#1C1C1E',
   border: '#2b2b2b',
   shadow: '#5E5E5E',
+  danger: '#ff4d4f',
+  warning: '#faad14',
+  info: '#1890ff',
+  success: '#52c41a',
 };
 
 export const LightThemeColors = {
@@ -45,6 +53,10 @@ export const LightThemeColors = {
   card: '#f4f4f4',
   border: '#C7C7CC',
   shadow: '#5E5E5E',
+  danger: '#ff4d4f',
+  warning: '#faad14',
+  info: '#1890ff',
+  success: '#52c41a',
 };
 
 export const DEFAULT_THEME: (typeof Themes)[number] = 'dark';

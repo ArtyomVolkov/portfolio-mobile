@@ -5,6 +5,7 @@ import AsyncStorage from '@/services/AsyncStorage';
 const ThemeContext = createContext({
   theme: THEME[DEFAULT_THEME],
   toggleTheme: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setTheme: (name: keyof TTheme) => {},
 });
 
