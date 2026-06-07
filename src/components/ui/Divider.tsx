@@ -1,10 +1,50 @@
-import { FC } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { FC, useCallback, memo, useState, useMemo } from 'react';
+import { LayoutChangeEvent, StyleSheet, View } from 'react-native';
 
 import { TTextStyle } from '@/core/types/ui';
 import Typography from './Typography';
 import { useTheme } from '@/contexts/theme';
-import { SCREEN_WIDTH } from '@/constants/dimensions';
+
+type DotsProps = {
+  size: number;
+  gap: number;
+  color: string;
+  shape: 'dashed' | 'dotted';
+};
+
+export const Dots: FC<DotsProps> = ({ size, gap, color, shape }) => {
+  const [items, setItems] = useState(0);
+  const shapeWidth = useMemo(
+    () => (shape === 'dashed' ? size * 3 : size),
+    [shape, size],
+  );
+
+  const onLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      const { width } = event.nativeEvent.layout;
+
+      const count = Math.round(width / (shapeWidth + gap));
+      setItems(count);
+    },
+    [shapeWidth, gap],
+  );
+
+  return (
+    <View style={styles.dots} onLayout={onLayout}>
+      {new Array(items).fill(0).map((_, index) => (
+        <View
+          key={index}
+          style={{
+            width: shapeWidth,
+            height: size,
+            borderRadius: size / 2,
+            backgroundColor: color,
+          }}
+        />
+      ))}
+    </View>
+  );
+};
 
 type DividerProps = {
   title?: string;
@@ -23,67 +63,77 @@ const Divider: FC<DividerProps> = ({
 }) => {
   const { theme } = useTheme();
 
-  const renderDots = () => {
+  const renderDots = useCallback(() => {
     if (borderStyle === 'solid') {
       return null;
     }
-    const dotWidth = borderStyle === 'dashed' ? height * 3 : height; // Adjust dot width based on style
-    const dots = new Array(Math.floor(SCREEN_WIDTH / 2)).fill(0); // Adjust the divisor to control spacing
 
     return (
-      <View style={styles.dots}>
-        {dots.map((_, index) => (
-          <View
-            key={index}
-            style={{
-              width: dotWidth,
-              height: height,
-              borderRadius: height / 2,
-              backgroundColor: theme.colors.text,
-            }}
-          />
-        ))}
-      </View>
+      <Dots
+        gap={styles.dots.gap}
+        size={height}
+        color={theme.colors.text}
+        shape={borderStyle}
+      />
     );
-  };
+  }, [borderStyle, height, theme.colors.text]);
 
-  return (
-    <View style={[styles.container]}>
-      <View
-        style={[
-          styles.hr,
-          {
-            height,
-            borderRadius: height / 2,
-            borderStyle,
-          },
-          borderStyle === 'solid' && { backgroundColor: theme.colors.text },
-          align === 'left' && styles.smallGrow,
-        ]}
-      >
-        {renderDots()}
-      </View>
-      {title && (
+  const renderContent = useCallback(() => {
+    if (!title) {
+      return (
+        <View
+          style={[
+            styles.hr,
+            {
+              height,
+              borderRadius: height / 2,
+              borderStyle,
+            },
+            borderStyle === 'solid' && { backgroundColor: theme.colors.text },
+          ]}
+        >
+          {renderDots()}
+        </View>
+      );
+    }
+    return (
+      <>
+        <View
+          style={[
+            styles.hr,
+            {
+              height,
+              borderRadius: height / 2,
+              borderStyle,
+            },
+            borderStyle === 'solid' && { backgroundColor: theme.colors.text },
+            align === 'left' && styles.smallGrow,
+          ]}
+        >
+          {renderDots()}
+        </View>
         <Typography style={[styles.title, style, { color: theme.colors.text }]}>
           {title}
         </Typography>
-      )}
-      <View
-        style={[
-          styles.hr,
-          {
-            borderStyle,
-            height,
-            borderRadius: height / 2,
-          },
-          borderStyle === 'solid' && { backgroundColor: theme.colors.text },
-          align === 'right' && styles.smallGrow,
-        ]}
-      >
-        {renderDots()}
-      </View>
-    </View>
-  );
+        <View
+          style={[
+            styles.hr,
+            {
+              borderStyle,
+              height,
+              borderRadius: height / 2,
+            },
+            borderStyle === 'solid' && { backgroundColor: theme.colors.text },
+            align === 'right' && styles.smallGrow,
+          ]}
+        >
+          {renderDots()}
+        </View>
+      </>
+    );
+  }, [align, borderStyle, height, renderDots, style, theme.colors.text, title]);
+
+  return <View style={styles.container}>{renderContent()}</View>;
 };
 
 const styles = StyleSheet.create({
@@ -120,4 +170,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Divider;
+export default memo(Divider);
